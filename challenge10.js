@@ -4,10 +4,13 @@
 //Additional arguments needed by the passed-in function will need to be passed into the returned function.
 
 function defineFirstArg(func, arg) {
-
+    let innerFunc = input => func(arg,input)
+    return innerFunc
 }
 
 // /*** Uncomment these to check your work! ***/
-// const subtract = function(big, small) { return big - small; };
-// const subFrom20 = defineFirstArg(subtract, 20);
-// console.log(subFrom20(5)); // => should log 15
+ const subtract = function(big, small) { return big - small; };
+ const subFrom20 = defineFirstArg(subtract, 20);
+ console.log(subFrom20(5)); // => should log 15
+ console.log(subFrom20(3)); // => should log 17
+

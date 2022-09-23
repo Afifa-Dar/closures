@@ -9,31 +9,24 @@ function censor() {
     let arr = []
    function inner (){
       if (arguments.length == 2){
-        arr.push(arguments[0],arguments[1])
+        arr.push(arguments[0] , arguments[1])
       }
       else if (arguments.length == 1)
       { 
-        console.log(arr)
-        let str = arguments[0].split(' ')
-        let reSt = str
+        let reSt = arguments[0]
+        let str = arguments[0].replaceAll(',', '')
+        str = str.replaceAll('.', '')
+        str = str.split(' ')
+
        for( let i in str)
        {
-         console.log(i,str[i])
          if(arr.includes(str[i]))
          {
-           console.log("found")
            let ind = arr.indexOf(str[i])
-           console.log(ind)
-           if(ind%2==0)
-           {
-            reSt[i] =  arr[ind+1]
-             console.log(reSt,"* ")
-           }
-           else 
-           {
-               reSt[i] =  arr[ind-1]
-             onsole.log(reSt,"**")
-           }
+
+           if(ind%2==0)   reSt = reSt.replace(str[i], arr[ind+1])
+
+           else   reSt = reSt.replace(str[i], arr[ind-1])
          } 
       }
         return reSt
@@ -41,9 +34,11 @@ function censor() {
    }
       return inner
    }
+   
    // /*** Uncomment these to check your work! ***/
     const changeScene = censor();
     changeScene('dogs', 'cats');
     changeScene('quick', 'slow');
+    changeScene('brown', 'white');
    console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
    
